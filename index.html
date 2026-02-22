@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,61 +7,63 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Sticky Header / Title + Navigation -->
+    <!-- Sticky Header + Navigation -->
     <header class="sticky-header">
-        <h1>EL Proyecto Don Quixote</h1>
-        <p>Aqui se presenta el proyecto de Don Quixote</p>
+        <div class="header-content">
+            <h1>El Proyecto Don Quixote</h1>
+            <p>Aquí se presenta el proyecto de Don Quixote</p>
+        </div>
 
-        <!-- Sticky Navigation -->
-        <nav class="sticky-nav">
+        <!-- Navigation Bar -->
+        <nav class="top-nav">
             <ul>
-                <li><a href="#Tab1">Scene 1</a></li>
-                <li><a href="#Tab2">Scene 2</a></li>
-                <li><a href="#Tab3">Scene 3</a></li>
+                <li><a href="#Tab1" class="tab-link active">Escena 1</a></li>
+                <li><a href="#Tab2" class="tab-link">Escena 2</a></li>
+                <li><a href="#Tab3" class="tab-link">Escena 3</a></li>
                 <li><a href="#podcast">Podcast</a></li>
-                <li><a href="sources.html">Sources</a></li>
+                <li><a href="sources.html">Recursos</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- Tab Content -->
-    <section id="Tab1" class="tab-content active">
-        <h2>El uno</h2>
+    <!-- Tab Sections -->
+    <section id="Tab1" class="tab-content active section-grey">
+        <h2>Escena 1</h2>
         <p>Este es el primer escenario del proyecto.</p>
     </section>
 
-    <section id="Tab2" class="tab-content">
-        <h2>El dos</h2>
+    <section id="Tab2" class="tab-content section-blue">
+        <h2>Escena 2</h2>
         <p>Este es el segundo escenario del proyecto.</p>
     </section>
 
-    <section id="Tab3" class="tab-content">
-        <h2>El tres</h2>
+    <section id="Tab3" class="tab-content section-white">
+        <h2>Escena 3</h2>
         <p>Este es el tercer escenario del proyecto.</p>
     </section>
 
     <!-- Podcast Section -->
-    <section id="podcast" class="podcast">
+    <section id="podcast" class="tab-content section-grey">
         <h2>Escucha el Podcast</h2>
         <audio controls>
             <source src="podcasts/episode1.mp3" type="audio/mpeg">
-            Your browser does not support the audio element
+            Tu navegador no soporta el audio.
         </audio>
-        <button id="toggleTranscript">Show Transcription</button>
+        <button id="toggleTranscript">Mostrar Transcripción</button>
         <div id="transcription" class="hidden">
-            <p> Las transcripciones del podcast estarán disponibles aquí. </p>
+            <p>Las transcripciones del podcast estarán disponibles aquí.</p>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer>
-        <p>Ve a los recursos aquí<a href="sources.html">Recursos</a></p>
+    <footer class="footer">
+        <p>Ve a los <a href="sources.html">Recursos</a></p>
     </footer>
 
     <!-- Script for Tabs & Transcript -->
     <script>
         // Tabs functionality
-        const tabLinks = document.querySelectorAll('.sticky-nav a[href^="#Tab"]');
+        const tabLinks = document.querySelectorAll('.top-nav a[href^="#Tab"]');
         const tabContents = document.querySelectorAll('.tab-content');
 
         tabLinks.forEach(link => {
@@ -71,6 +73,7 @@
                 tabContents.forEach(c => c.classList.remove('active'));
                 link.classList.add('active');
                 document.querySelector(link.getAttribute('href')).classList.add('active');
+                window.scrollTo({top:0, behavior:'smooth'});
             });
         });
 
@@ -80,7 +83,7 @@
 
         toggleBtn.addEventListener('click', () => {
             transcript.classList.toggle('hidden');
-            toggleBtn.textContent = transcript.classList.contains('hidden') ? 'Show Transcription' : 'Hide Transcription';
+            toggleBtn.textContent = transcript.classList.contains('hidden') ? 'Mostrar Transcripción' : 'Ocultar Transcripción';
         });
     </script>
 </body>
