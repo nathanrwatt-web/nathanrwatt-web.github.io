@@ -1,10 +1,87 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>My First Website</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Don Quixote Play Project</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Hello, world!</h1>
-    <p>This is my website 🎉</p>
+    <!-- Sticky Header / Title + Navigation -->
+    <header class="sticky-header">
+        <h1>Don Quixote Play Project</h1>
+        <p>Your creative exploration of Don Quixote</p>
+
+        <!-- Sticky Navigation -->
+        <nav class="sticky-nav">
+            <ul>
+                <li><a href="#Tab1">Scene 1</a></li>
+                <li><a href="#Tab2">Scene 2</a></li>
+                <li><a href="#Tab3">Scene 3</a></li>
+                <li><a href="#podcast">Podcast</a></li>
+                <li><a href="sources.html">Sources</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Tab Content -->
+    <section id="Tab1" class="tab-content active">
+        <h2>Scene 1</h2>
+        <p>Stuff details for Scene 1...</p>
+    </section>
+
+    <section id="Tab2" class="tab-content">
+        <h2>Scene 2</h2>
+        <p>More stuff details for Scene 2...</p>
+    </section>
+
+    <section id="Tab3" class="tab-content">
+        <h2>Scene 3</h2>
+        <p>Stuff details for Scene 3...</p>
+    </section>
+
+    <!-- Podcast Section -->
+    <section id="podcast" class="podcast">
+        <h2>Listen to a Podcast</h2>
+        <audio controls>
+            <source src="podcasts/episode1.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+        <button id="toggleTranscript">Show Transcription</button>
+        <div id="transcription" class="hidden">
+            <p>This is the transcription of the podcast episode. Transcript to be implemented</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>Check out my <a href="sources.html">Sources</a></p>
+    </footer>
+
+    <!-- Script for Tabs & Transcript -->
+    <script>
+        // Tabs functionality
+        const tabLinks = document.querySelectorAll('.sticky-nav a[href^="#Tab"]');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabLinks.forEach(link => {
+            link.addEventListener('click', e => {
+                e.preventDefault();
+                tabLinks.forEach(l => l.classList.remove('active'));
+                tabContents.forEach(c => c.classList.remove('active'));
+                link.classList.add('active');
+                document.querySelector(link.getAttribute('href')).classList.add('active');
+            });
+        });
+
+        // Toggle transcript
+        const toggleBtn = document.getElementById('toggleTranscript');
+        const transcript = document.getElementById('transcription');
+
+        toggleBtn.addEventListener('click', () => {
+            transcript.classList.toggle('hidden');
+            toggleBtn.textContent = transcript.classList.contains('hidden') ? 'Show Transcription' : 'Hide Transcription';
+        });
+    </script>
 </body>
 </html>
